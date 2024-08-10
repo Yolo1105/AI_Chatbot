@@ -1,26 +1,25 @@
-import requests
+# chatbot.py
 
-preapproved_answers = {
-    "login issue": "If you are experiencing login issues, please check your credentials and try again. If the problem persists, contact the support team.",
-    "module load": "To load a module, use the command `module load <module_name>`. For a list of available modules, use the command `module avail`.",
-    "job submission": "To submit a job, use the command `sbatch <script_name>`. Make sure your script includes the necessary SLURM directives.",
-    "contact support": "You can contact support by emailing support@hpc.nyu.edu or calling the helpdesk at (555) 555-5555."
-}
+from transformers import DistilGPT2LMHeadModel, GPT2Tokenizer
 
-def get_answer(question):
-    for keyword, answer in preapproved_answers.items():
-        if keyword in question.lower():
-            return answer
-    return "Sorry, I don't understand your question. Please try again."
+# Load the fine-tuned model and tokenizer
+fine_tuned_model = DistilGPT2LMHeadModel.from_pretrained('./fine-tuned-distilgpt2')
+fine_tuned_tokenizer = GPT2Tokenizer.from_pretrained('./fine-tuned-distilgpt2')
 
-def main():
-    print("Welcome to the AI Chatbot!")
-    while True:
-        question = input("Ask a question (or type 'exit' to quit): ")
-        if question.lower() == 'exit':
-            break
-        answer = get_answer(question)
-        print(f"Answer: {answer}")
+def chatbot_response(question):
+    # Encode the user's question
+    input_text = f"Question: {question} Answer:"
+    input_ids = fine_tuned_tokenizer.encode(input_text, return_tensors='pt')
 
-if __name__ == '__main__':
-    main()
+    # Generate a response
+    output = fine_tuned_model.generate(input_ids, max_length=50, num_return_sequences=1, pad_token_id=fine_tuned_tokenizer.eos_token_id)
+
+    # Decode and return the response
+    response = fine_tuned_tokenizer.decode(output[0], skip_special_tokens=True)
+    return response.split("Answer:")[1].strip()
+
+# Example interaction with the chatbot
+if __name__ == "__main__":
+    print(chatbot_response("What is your name?"))
+    print(chatbot_response("Tell me a joke."))
+    print(chatbot_response("How are you?"))
