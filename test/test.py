@@ -1,46 +1,47 @@
-import requests
-from bs4 import BeautifulSoup
+import re
 
-def google_search(query):
-    url = f"https://www.google.com/search?q={query}"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
-    response = requests.get(url, headers=headers)
-    return response.text
+# Function to read the content of the MD file
+def read_md_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
 
-def parse_results(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    results = []
+# Function to search for the term in the text
+def search_in_text(search_term, text):
+    # Convert both search term and text to lowercase for case-insensitive search
+    search_term = search_term.lower()
+    text = text.lower()
 
-    for g in soup.find_all(class_='tF2Cxc'):
-        title = g.find('h3')
-        link = g.find('a')['href']
-        snippet = g.find(class_='IsZvec')
-        
-        if title and link:
-            title_text = title.text
-            snippet_text = snippet.text if snippet else "No snippet available"
-            results.append({
-                'title': title_text,
-                'link': link,
-                'snippet': snippet_text
-            })
-    
-    return results
+    # Use regex to find sentences containing the search term
+    sentences = re.findall(r'[^.!?]*' + re.escape(search_term) + r'[^.!?]*[.!?]', text)
+
+    # Return the sentences found
+    if sentences:
+        return sentences
+    else:
+        return ["No results found."]
 
 def main():
-    query = "NYU HPC"
-    html = google_search(query)
-    search_results = parse_results(html)
+    # Path to the MD file
+    file_path = 'data_management.md'
     
-    if not search_results:
-        print("No results found.")
-    else:
-        for result in search_results:
-            print(f"Title: {result['title']}")
-            print(f"Link: {result['link']}")
-            print(f"Snippet: {result['snippet']}\n")
+    # Read the content of the MD file
+    text = read_md_file(file_path)
 
-if __name__ == '__main__':
+    # Get search term from user
+    search_term = input("Enter search term: ")
+
+    # Get search results
+    results = search_in_text(search_term, text)
+
+    # Print results in a labeled format
+    if results[0] != "No results found.":
+        print(f"Search results for '{search_term}':")
+        for index, result in enumerate(results, start=1):
+            print(f"Result {index}:")
+            print(result.strip())
+            print("-" * 50)  # Separator between results
+    else:
+        print("No results found.")
+
+if __name__ == "__main__":
     main()

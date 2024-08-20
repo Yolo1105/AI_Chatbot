@@ -1,12 +1,19 @@
 import re
 import logging
+import spacy
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
+# Initialize GPT-2 Model and Tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 
+# Setup logging
 logging.basicConfig(filename='chatbot_debug.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Load spaCy English model
+nlp = spacy.load('en_core_web_sm')
+
+# Function to read the content of the MD file
 def read_md_file(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -15,67 +22,40 @@ def read_md_file(file_path):
         logging.error("File not found: %s", file_path)
         return ""
 
-def clean_text(text):
-    text = re.sub(r'\[.*?\]\(.*?\)', '', text) 
-    text = re.sub(r'#+\s', '', text)  
-    text = re.sub(r'-{2,}', '', text) 
-    text = re.sub(r'\s{2,}', ' ', text)  
-    text = re.sub(r'\n', ' ', text)  
-    return text.strip()
+# Function to clean up and parse text using spaCy for more advanced text analysis
+def clean_and_parse_text(text):
+    doc = nlp(text)
+    return ' '.join([token.lemma_ for token in doc if not token.is_punct and not token.is_space])
 
+# Function to search for the term in the text and generate a response using spaCy
 def generate_response_from_md(search_term, text):
     search_term = search_term.lower()
-    text = text.lower()
-    sentences = re.findall(r'[^.!?]*' + re.escape(search_term) + r'[^.!?]*[.!?]', text)
+    doc = nlp(text.lower())
+
+    sentences = [sent.text for sent in doc.sents if search_term in sent.text.lower()]
 
     if sentences:
-        responses = []
-        for sentence in sentences:
-            cleaned_sentence = clean_text(sentence.strip())
-            responses.append(f"Here's what I found: {cleaned_sentence}")
+        responses = [f"Here's what I found on '{search_term}': {clean_and_parse_text(sent)}" for sent in sentences]
         return responses
     else:
         logging.info("Search term not found: %s", search_term)
         return [f"I'm sorry, I couldn't find any detailed information about '{search_term}'. Let me try to generate an answer for you."]
 
+# Function to generate a response using GPT-2
 def generate_gpt2_response(question):
     input_ids = tokenizer.encode(question, return_tensors='pt')
     output = model.generate(
         input_ids,
-        max_length=100,  
+        max_length=250,  # Allow for longer responses
         num_return_sequences=1,
         temperature=0.7,
         top_p=0.9,
         do_sample=True
     )
     response = tokenizer.decode(output[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
-    response = remove_repetition(response)
-    return clean_text(response)
+    return clean_and_parse_text(response)  # Use spaCy to parse the response
 
-def remove_repetition(text):
-    sentences = text.split('. ')
-    seen = set()
-    filtered_sentences = []
-
-    for sentence in sentences:
-        if sentence not in seen:
-            seen.add(sentence)
-            filtered_sentences.append(sentence)
-    
-    return '. '.join(filtered_sentences).strip()
-
-def remove_repeated_names(text):
-    lines = text.split("\n")
-    cleaned_lines = []
-    previous_line = None
-
-    for line in lines:
-        if line.strip() != previous_line:
-            cleaned_lines.append(line.strip())
-            previous_line = line.strip()
-    
-    return " ".join(cleaned_lines).strip()
-
+# Function to write responses to an MD file
 def write_to_md_file(file_path, user_input, responses):
     with open(file_path, 'a', encoding='utf-8') as file:
         file.write(f"## User Input: {user_input}\n")
@@ -83,22 +63,22 @@ def write_to_md_file(file_path, user_input, responses):
             file.write(f"**Response {i}:** {response}\n\n")
         file.write("\n---\n\n")
 
+# Main function to handle user interaction
 def main():
     output_file_path = 'chatbot_responses.md'
-    
-    open(output_file_path, 'w').close()
-
     input_file_path = 'data_management.md'
     
+    open(output_file_path, 'w').close()  # Clear the file content at the start
+
     text = read_md_file(input_file_path)
 
-    print("Welcome to the NYU HPC Chatbot! How can I assist you today?")
+    print("Welcome to the AI Chatbot! How can I assist you today?")
     
     while True:
-        user_input = input("Please enter your prompt here: ")
+        user_input = input("You: ")
 
         if user_input.lower() in ["exit", "quit"]:
-            print("Thank you for using NYU HPC Chatbot!")
+            print("Goodbye! Have a great day!")
             break
 
         responses_from_md = generate_response_from_md(user_input, text)
@@ -116,4 +96,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\nThank you for using NYU HPC Chatbot!")
+        print("\nGoodbye! Have a great day!")
