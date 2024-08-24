@@ -32,10 +32,10 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_definition:
-  - text: "A GPU cluster consists of multiple GPUs used collectively to speed up computational tasks."
-  - text: "High performance computing (HPC) involves using supercomputers and parallel processing techniques for complex computational tasks."
-  - text: "Distributed computing involves multiple computers working on a single problem at the same time, often over the internet."
+  # utter_definition:
+  # - text: "A GPU cluster consists of multiple GPUs used collectively to speed up computational tasks."
+  # - text: "High performance computing (HPC) involves using supercomputers and parallel processing techniques for complex computational tasks."
+  # - text: "Distributed computing involves multiple computers working on a single problem at the same time, often over the internet."
 
 
 session_config:

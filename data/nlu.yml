@@ -90,13 +90,13 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-- intent: ask_definition
-  examples: |
-    - What is a GPU cluster?
-    - Define high performance computing
-    - Explain distributed computing
+# - intent: ask_definition
+#   examples: |
+#     - What is a GPU cluster?
+#     - Define high performance computing
+#     - Explain distributed computing
 
-- intent: solve_hpc_issue
-  examples: |
-    - How do I optimize a job submission?
-    - Tips for MPI debugging
+# - intent: solve_hpc_issue
+#   examples: |
+#     - How do I optimize a job submission?
+#     - Tips for MPI debugging

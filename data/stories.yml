@@ -29,17 +29,17 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: HPC Definition Query
-  steps:
-  - intent: ask_definition
-  - action: utter_definition
+# - story: HPC Definition Query
+#   steps:
+#   - intent: ask_definition
+#   - action: utter_definition
 
-- story: HPC Problem Solving
-  steps:
-  - intent: solve_hpc_issue
-  - action: action_solve_hpc_issue
+# - story: HPC Problem Solving
+#   steps:
+#   - intent: solve_hpc_issue
+#   - action: action_solve_hpc_issue
 
-- story: provide definitions dynamically
-  steps:
-  - intent: ask_definition
-  - action: action_provide_definition
+# - story: provide definitions dynamically
+#   steps:
+#   - intent: ask_definition
+#   - action: action_provide_definition
