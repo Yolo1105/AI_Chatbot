@@ -32,7 +32,7 @@ def generate_response_from_md(search_term, text):
         responses = []
         for sentence in sentences:
             cleaned_sentence = clean_text(sentence.strip())
-            responses.append(f"Here's what I found: {cleaned_sentence}")
+            responses.append(f"Here's what I found from NYU HPC site: {cleaned_sentence}")
         return responses
     else:
         logging.info("Search term not found: %s", search_term)
