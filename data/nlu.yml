@@ -90,13 +90,31 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-# - intent: ask_definition
-#   examples: |
-#     - What is a GPU cluster?
-#     - Define high performance computing
-#     - Explain distributed computing
+- intent: hpc_definition
+  examples: |
+    - What is HPC?
+    - What is high performance computing used for?
+    - Examples of high performance computing applications?
 
-# - intent: solve_hpc_issue
-#   examples: |
-#     - How do I optimize a job submission?
-#     - Tips for MPI debugging
+- intent: data_management_intro
+  examples: |
+    - What is HPC Data Management?
+    - How to use HPC Data Managament?
+    - What are the examples of public data sets?
+
+- intent: moderate_risk_data_warning
+  examples: |
+    - Can I store moderate risk data on HPC?
+    - What is moderate risk data as per NYU policy?
+    - Is HPC approved for moderate risk data analysis?
+
+- intent: high_risk_data_warning
+  examples: |
+    - Where should I store high risk research data?
+    - Can high risk data be stored on the HPC system?
+    - What is considered high risk data at NYU?
+
+- intent: data_storage_options
+  examples: |
+    - What are the data storage options for HPC Environment?
+

@@ -29,17 +29,27 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-# - story: HPC Definition Query
-#   steps:
-#   - intent: ask_definition
-#   - action: utter_definition
+- story: hpc definition
+  steps:
+  - intent: hpc_definition
+  - action: utter_hpc_definition
 
-# - story: HPC Problem Solving
-#   steps:
-#   - intent: solve_hpc_issue
-#   - action: action_solve_hpc_issue
+- story: hpc data management intro
+  steps: 
+  - intent: data_management_intro
+  - action: utter_data_management_intro
 
-# - story: provide definitions dynamically
-#   steps:
-#   - intent: ask_definition
-#   - action: action_provide_definition
+- story: hpc moderate risk security warning
+  steps:
+  - intent: moderate_risk_data_warning
+  - action: utter_moderate_risk_data_warning
+
+- story: hpc high risk security warning
+  steps:
+  - intent: high_risk_data_warning
+  - action: utter_high_risk_data_warning
+
+- story: hpc data storage options in the HPC Environment
+  steps:
+  - intent: data_storage_options
+  - action: utter_data_storage_options

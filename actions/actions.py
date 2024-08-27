@@ -25,24 +25,3 @@
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
-
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-
-# class ActionProvideDefinition(Action):
-#     def name(self):
-#         return "action_provide_definition"
-
-#     def run(self, dispatcher, tracker, domain):
-#         last_message = tracker.latest_message.get('text').lower()
-#         if 'gpu cluster' in last_message:
-#             response = "A GPU cluster consists of multiple GPUs used collectively to speed up computational tasks."
-#         elif 'high performance computing' in last_message or 'hpc' in last_message:
-#             response = "High performance computing (HPC) involves using supercomputers and parallel processing techniques for complex computational tasks."
-#         elif 'distributed computing' in last_message:
-#             response = "Distributed computing involves multiple computers working on a single problem at the same time, often over the internet."
-#         else:
-#             response = "I'm not sure how to answer that. Could you specify what definition you need?"
-        
-#         dispatcher.utter_message(text=response)
-#         return []

@@ -11,3 +11,28 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: HPC definition
+  steps:  
+  - intent: hpc_definition
+  - action: utter_hpc_definition
+
+- rule: HPC Data Management intro
+  steps:
+  - intent: data_management_intro
+  - action: utter_data_management_intro
+
+- rule: HPC Moderate Risk Data
+  steps:
+  - intent: moderate_risk_data_warning
+  - action: utter_moderate_risk_data_warning
+
+- rule: HPC High Risk Data
+  steps:
+  - intent: high_risk_data_warning
+  - action: utter_high_risk_data_warning
+
+- rule: HPC Data storage
+  steps:
+  - intent: data_storage_options
+  - action: utter_data_storage_options

@@ -1,9 +1,12 @@
 import re
 import logging
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-model = GPT2LMHeadModel.from_pretrained('gpt2')
+tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
+try:
+    model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-j-6B')
+except OSError:
+    model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-j-6B', force_download=True)
 
 logging.basicConfig(filename='chatbot_debug.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -38,7 +41,7 @@ def generate_response_from_md(search_term, text):
         logging.info("Search term not found: %s", search_term)
         return [f"I'm sorry, I couldn't find any detailed information about '{search_term}'. Let me try to generate an answer for you."]
 
-def generate_gpt2_response(question):
+def generate_gpt_j_response(question):
     input_ids = tokenizer.encode(question, return_tensors='pt')
     output = model.generate(
         input_ids,
@@ -104,7 +107,7 @@ def main():
         responses_from_md = generate_response_from_md(user_input, text)
 
         if "I'm sorry" in responses_from_md[0]:
-            final_response = generate_gpt2_response(user_input)
+            final_response = generate_gpt_j_response(user_input)
             print(f"\n{final_response}\n")
             write_to_md_file(output_file_path, user_input, [final_response])
         else:

@@ -1,21 +1,11 @@
-## User Input: what is hpc
-**Response 1:** what is hpc? The answer is that it is a collection of many things, including a number of different languages and technologies. If you're not familiar with hpc you can find out more about it here. How does it work? HPC is a collection of many different languages and technologies, which means that it has to be run with the command line tool rpc and a lot of other commands. If you're using rpc, you
+## User Input: hi
+**Response 1:** hi and his friends. I was looking for some help with this one, as I'm not sure if I'm on the right track. The story is about a boy named Benji who is a young man of about 17 years old. He's in a very bad place in life, his parents have been killed and he lives with his grandmother. His grandmother is a very kind old woman, but she's getting sick and she's getting old. Benji has been in and
 
 
 ---
 
-## User Input: risk data
-**Response 1:** Here's what I found from NYU HPC site: - - - - - - - - - - - - - data management subpages - - - - introduction to hpc data management the nyu hpc environment provides access to a number of file systems to better serve the needs of researchers managing data during the various stages of the research data lifecycle (data capture, analysis, archiving, etc.
-
-**Response 2:** Here's what I found from NYU HPC site: data security warning moderate risk data - hpc approved - the hpc environment has been approved for storing and analyzing moderate risk research data, as defined in the [nyu electronic data and system risk classification policy](https://www.
-
-**Response 3:** Here's what I found from NYU HPC site: high risk data - secure research data environments (srde) approved because the hpc system is not approved for high risk data, we recommend using an approved system like the [secure research data environments (srde)](https://www.
-
-
----
-
-## User Input: what is risk data
-**Response 1:** what is risk data for? Is it really a risk data for a particular kind of risk? In short, you don't have to have a risk data for anything to be a risk. If you have a risk, you should be able to tell what the risk is. But what about if the risk is high? That's a risk that is too high. I think this is an important point. I think that the whole idea of risk data is that we don't know
+## User Input: what is high performance computing
+**Response 1:** what is high performance computing and why does it matter? The term high performance computing (HPC) can refer to many different types of computing. However, what it means in this article is the use of computing to perform scientific research or engineering tasks. High performance computing is the use of computers to perform tasks that are usually done by human brains. It is used for tasks that are very complex and difficult, such as simulations of physical systems. The main reason why HPC
 
 
 ---

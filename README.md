@@ -245,6 +245,113 @@ rasa shell
 **Running the Chatbot**:
 - Deploy the chatbot within the NYU HPC environment, ensuring it has access to necessary APIs and databases for retrieving HPC-specific data.
 
+## Steps for training
+
+### 1. `nlu.yml`
+   - **Purpose**: This file is crucial for natural language understanding. It teaches the chatbot how to recognize what the user is saying by defining intents and providing example utterances for each intent.
+   - **Steps**:
+     1. **Define Intents**: Create intents that represent the types of questions or statements users might make about HPC.
+     2. **Provide Examples**: For each intent, list example phrases that a user might say. These examples train the AI on the variety of ways a user could express a single intent.
+   - **Example**:
+     ```yaml
+     - intent: ask_hpc_usage
+       examples: |
+         - What is high performance computing used for?
+         - Examples of high performance computing applications?
+     ```
+   - **Usage**: The intents and examples help the chatbot's machine learning model understand and categorize user inputs into these defined intents during conversations.
+
+### 2. `domain.yml`
+   - **Purpose**: Defines the universe in which your chatbot operates. It includes intents, entities, slots, responses, and actions that the chatbot knows about.
+   - **Steps**:
+     1. **Declare Intents**: List all the intents you’ve defined in `nlu.yml`.
+     2. **Define Responses**: Craft responses that the chatbot will use to answer the user. These can be direct text or triggers for custom actions.
+     3. **Specify Actions**: Include any standard or custom actions the chatbot might execute in response to user queries.
+   - **Example**:
+     ```yaml
+     intents:
+       - ask_hpc_usage
+
+     responses:
+       utter_hpc_usage:
+         - text: "HPC is used in scientific research, weather forecasting, and even in finance for risk analysis."
+
+     actions:
+       - utter_hpc_usage
+     ```
+   - **Usage**: This file is referenced during conversations to determine how the chatbot should react to different intents recognized by the NLU model.
+
+### 3. `stories.yml`
+   - **Purpose**: Illustrates the paths conversations can take. Stories are example dialogues that provide the model with patterns of interaction.
+   - **Steps**:
+     1. **Create Stories**: Develop stories that map out potential dialogue sequences based on the intents and actions defined earlier.
+   - **Example**:
+     ```yaml
+     - story: HPC usage story
+       steps:
+         - intent: ask_hpc_usage
+         - action: utter_hpc_usage
+     ```
+   - **Usage**: Stories train the dialogue management model to handle real-life, non-linear conversations by providing it with examples of how conversations might flow.
+
+### 4. `rules.yml`
+   - **Purpose**: Manages deterministic parts of conversations that should always follow the same path, like FAQs or specific commands.
+   - **Steps**:
+     1. **Establish Rules**: Define rules for interactions that should always elicit the same response.
+   - **Example**:
+     ```yaml
+     - rule: HPC Usage Rule
+       steps:
+         - intent: ask_hpc_usage
+         - action: utter_hpc_usage
+     ```
+   - **Usage**: Ensures consistency in the bot’s responses to specific user inputs, bypassing the dialogue management model for these cases.
+
+### 5. `actions.py`
+   - **Purpose**: Used for defining custom actions that involve executing Python code. Useful for dynamic responses or interactions that require processing or API calls.
+   - **Steps**:
+     1. **Define Custom Actions**: Write Python classes for actions that perform tasks beyond simple responses, like fetching data or processing user input.
+   - **Example**:
+     ```python
+     class ActionProvideHPCExamples(Action):
+         def name(self) -> Text:
+             return "action_provide_hpc_examples"
+
+         def run(self, dispatcher: CollectingDispatcher,
+                 tracker: Tracker,
+                 domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+             dispatcher.utter_message(text="HPC is extensively used in genome analysis and quantum mechanics.")
+             return []
+     ```
+   - **Usage**: These actions can be called during conversations to perform complex operations and respond based on real-time data or computations.
+
+### 1. `domain.yml`
+- **Purpose**: Defines the universe in which your chatbot operates. It is essentially the chatbot’s vocabulary and capabilities handbook.
+- **Contents**:
+  - **Intents**: What the chatbot needs to recognize from user input.
+  - **Entities**: Pieces of information the chatbot can extract from user input.
+  - **Slots**: Variables that store information the chatbot can use throughout a conversation.
+  - **Responses**: Messages or actions the chatbot can use to respond to the user.
+  - **Actions**: Lists all the actions (custom or default) the chatbot can execute.
+- **Function**: Acts as a central configuration file that outlines all the possible elements (like intents, entities, actions, and responses) that the other files will reference. It ensures that any reference made in stories or rules is valid and has been predefined.
+
+### 2. `stories.yml`
+- **Purpose**: Used to train the chatbot’s dialogue management model by providing examples of real conversation paths.
+- **Contents**:
+  - **Stories**: These are detailed example conversations that include user intents followed by chatbot actions or responses. They represent the potential sequences of interactions.
+- **Function**: Helps the machine learning model understand the context and flow of conversations. It allows the model to practice and learn from various dialogue scenarios to handle similar situations in real conversations.
+
+### 3. `rules.yml`
+- **Purpose**: Manages predictable, deterministic parts of conversations that should always follow the exact same path.
+- **Contents**:
+  - **Rules**: Direct mappings of intents to responses or actions that do not require the influence of the machine learning model. Rules are used for straightforward interactions where the response does not vary, such as greetings, affirmations, or FAQ responses.
+- **Function**: Provides a reliable way to handle interactions that are standard and should not deviate. Unlike stories, which allow for more fluid and varied responses based on past dialogue, rules ensure a specific output every time a certain input is detected.
+
+### Key Differences
+- **Domain vs. Stories and Rules**: While the domain file defines everything the bot can potentially say or do, stories and rules dictate how the chatbot should act in specific situations.
+- **Stories vs. Rules**:
+  - **Flexibility**: Stories allow for more flexibility and can manage complex, varied dialogue paths using a trained model. They are ideal for handling more nuanced interactions.
+  - **Predictability**: Rules enforce predictable outcomes and are used where a deterministic response is needed, bypassing the dialogue model to ensure consistency in specific scenarios.
 
 ## Conclusion
 

@@ -8,9 +8,11 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - ask_definition
-  - solve_hpc_issue
-
+  - hpc_definition
+  - data_management_intro
+  - moderate_risk_data_warning
+  - high_risk_data_warning
+  - data_storage_options
 
 responses:
   utter_greet:
@@ -32,15 +34,21 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  # utter_definition:
-  # - text: "A GPU cluster consists of multiple GPUs used collectively to speed up computational tasks."
-  # - text: "High performance computing (HPC) involves using supercomputers and parallel processing techniques for complex computational tasks."
-  # - text: "Distributed computing involves multiple computers working on a single problem at the same time, often over the internet."
+  utter_hpc_definition:
+  - text: "High Performance Computing (HPC) refers to the practice of aggregating computing power in a way that delivers much higher performance than one could get out of a typical desktop computer or workstation, enabling the solution of complex data processing challenges, scientific problems, and simulations."
 
+  utter_data_management_intro:
+  - text: "The NYU HPC Environment provides access to a number of file systems to better serve the needs of researchers managing data during the various stages of the research data lifecycle (data capture, analysis, archiving,, etc.). "
+
+  utter_moderate_risk_data_warning:
+  - text: "The HPC Environment has been approved for storing and analyzing Moderate Risk research data, as defined in the NYU Electronic Data and System Risk Classification Policy. High Risk research data, such as those that include Personal Identifiable Information (PII) or electronic Protected Health Information (ePHI) or Controlled Unclassified Information (CUI) should NOT be stored in the HPC Environment. Please note that only the Office of Sponsored Projects (OSP) and Global Office of Information Security (GOIS) are empowered to classify the risk categories of data."
+
+  utter_high_risk_data_warning:
+  - text: "Because the HPC system is not approved for High Risk data, we recommend using an approved system like the  Secure Research Data Environments (SRDE)."
+
+  utter_data_storage_options:
+  - text: "User Home Directories, HPC Scratch, HPC Vast, HPC Research Project Space, HPC Work, HPC Archive"
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-actions:
-- action_provide_definition
