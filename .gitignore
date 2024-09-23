@@ -2,3 +2,6 @@
 /past_test
 /_pycache_
 /.rasa/cache
+/.rasa
+/.venv
+/.actions

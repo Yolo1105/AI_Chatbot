@@ -98,23 +98,57 @@ nlu:
 
 - intent: data_management_intro
   examples: |
-    - What is HPC Data Management?
-    - How to use HPC Data Managament?
-    - What are the examples of public data sets?
+    - What is HPC data management?
+    - How does HPC handle data storage?
+    - Can you explain data storage options in the HPC environment?
+    - What are the file systems available in HPC?
+    - Tell me about scratch file system in HPC
+    - What is user home directory in HPC?
 
 - intent: moderate_risk_data_warning
   examples: |
-    - Can I store moderate risk data on HPC?
-    - What is moderate risk data as per NYU policy?
-    - Is HPC approved for moderate risk data analysis?
+    - What is moderate risk data in HPC?
+    - Can I store moderate risk data on the HPC?
+    - What kind of data can be stored in HPC?
+    - Is PII allowed in HPC storage?
 
 - intent: high_risk_data_warning
   examples: |
-    - Where should I store high risk research data?
-    - Can high risk data be stored on the HPC system?
-    - What is considered high risk data at NYU?
+    - What is high risk data in HPC?
+    - Can HPC handle high risk data?
+    - What data should I store in SRDE?
+    - What is SRDE approved data?
 
 - intent: data_storage_options
   examples: |
     - What are the data storage options for HPC Environment?
 
+- intent: user_home_dir
+  examples: |
+    - How many storage space I can use for home directory? 
+
+- intent: ask_hpc_scratch_purging
+  examples: |
+    - How does the HPC scratch file purging work?
+    - What is the purging policy in HPC scratch?
+    - How long does data stay in scratch storage?
+    - Can I avoid data deletion in scratch?
+
+- intent: ask_hpc_storage_comparison
+  examples: |
+    - Can you compare the different storage options in HPC?
+    - What is the difference between scratch and vast storage?
+    - How does research project space differ from user home directory?
+    - Which storage option is best for my project in HPC?
+
+- intent: ask_hpc_data_transfers
+  examples: |
+    - How do I transfer data in the HPC environment?
+    - What are the data transfer options in HPC?
+    - Can I move files between storage systems in HPC?
+
+- intent: ask_hpc_sharing_data
+  examples: |
+    - How do I share data with collaborators on HPC?
+    - Can I share files in the scratch space?
+    - What is the best way to share files with my team in HPC?

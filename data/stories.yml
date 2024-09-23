@@ -53,3 +53,38 @@ stories:
   steps:
   - intent: data_storage_options
   - action: utter_data_storage_options
+
+- story: Handle HPC data management queries
+  steps:
+    - intent: ask_hpc_data_management
+    - action: utter_hpc_data_management
+
+- story: Explain moderate risk data
+  steps:
+    - intent: ask_moderate_risk_data
+    - action: utter_moderate_risk_data
+
+- story: Explain high risk data
+  steps:
+    - intent: ask_high_risk_data
+    - action: utter_high_risk_data
+
+- story: Explain HPC scratch file purging
+  steps:
+    - intent: ask_hpc_scratch_purging
+    - action: utter_hpc_scratch_purging
+
+- story: Compare HPC storage options
+  steps:
+    - intent: ask_hpc_storage_comparison
+    - action: utter_hpc_storage_comparison
+
+- story: Explain HPC data transfers
+  steps:
+    - intent: ask_hpc_data_transfers
+    - action: utter_hpc_data_transfers
+
+- story: Explain sharing data in HPC
+  steps:
+    - intent: ask_hpc_sharing_data
+    - action: utter_hpc_sharing_data

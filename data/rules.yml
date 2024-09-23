@@ -36,3 +36,8 @@ rules:
   steps:
   - intent: data_storage_options
   - action: utter_data_storage_options
+
+- rule: HPC User Home Directory
+  steps:
+  - intent: user_home_dir
+  - action: utter_user_home_dir
