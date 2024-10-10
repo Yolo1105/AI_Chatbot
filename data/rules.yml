@@ -12,32 +12,37 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: HPC definition
-  steps:  
-  - intent: hpc_definition
-  - action: utter_hpc_definition
-
-- rule: HPC Data Management intro
+- rule: answer_account_issues
   steps:
-  - intent: data_management_intro
-  - action: utter_data_management_intro
+  - intent: ask_account_issues
+  - action: utter_account_issues
 
-- rule: HPC Moderate Risk Data
+- rule: answer_login_issues
   steps:
-  - intent: moderate_risk_data_warning
-  - action: utter_moderate_risk_data_warning
+  - intent: ask_login_issues
+  - action: utter_login_issues
 
-- rule: HPC High Risk Data
+- rule: answer_software_requests
   steps:
-  - intent: high_risk_data_warning
-  - action: utter_high_risk_data_warning
+  - intent: ask_software_requests
+  - action: utter_software_requests
 
-- rule: HPC Data storage
+- rule: answer_data_management
   steps:
-  - intent: data_storage_options
-  - action: utter_data_storage_options
+  - intent: ask_data_management
+  - action: utter_data_management
 
-- rule: HPC User Home Directory
+- rule: answer_job_issues
   steps:
-  - intent: user_home_dir
-  - action: utter_user_home_dir
+  - intent: ask_job_issues
+  - action: utter_job_issues
+
+- rule: answer_other_questions
+  steps:
+  - intent: ask_other_questions
+  - action: utter_other_questions
+
+- rule: answer_mitm_warning
+  steps:
+    - intent: ask_mitm_warning
+    - action: utter_mitm_warning

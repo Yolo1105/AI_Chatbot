@@ -24,117 +24,246 @@ intents:
 - ask_hpc_storage_comparison
 - ask_hpc_data_transfers
 - ask_hpc_sharing_data
+- ask_storage_system
+- ask_storage_capacity
+- ask_storage_read_speed
+- ask_storage_iops
+- ask_vast_storage
+- ask_account_issues
+- ask_login_issues
+- ask_software_requests
+- ask_data_management
+- ask_job_issues
+- ask_other_questions
+- ask_mitm_warning
+- ask_gpfs
+- ask_gpfs_configuration
+- ask_performance
+- ask_vast
+- ask_rps
+- ask_gdtn
+- ask_datasets_general
+- ask_coco_dataset
+- ask_imagenet
+- ask_millions_songs
+- ask_twitter_decahose
+- ask_proquest_congressional
+- ask_c4
+- ask_gqa
+- ask_mjsynth
+- ask_open_images
+- ask_pile
+- ask_waymo
+- ask_quota_limits
+- ask_large_number_of_files
+- ask_package_management
 
 responses:
   utter_cheer_up:
-  - image: https://i.imgur.com/nGF1K8f.jpg
-    text: 'Here is something to cheer you up:'
+    - image: https://i.imgur.com/nGF1K8f.jpg
+      text: 'Here is something to cheer you up:'
 
   utter_data_management_intro:
-  - text: 'The NYU HPC Environment provides access to a number of file systems to
-      better serve the needs of researchers managing data during the various stages
-      of the research data lifecycle (data capture, analysis, archiving,, etc.). '
-  
+    - text: 'The NYU HPC Environment provides access to a number of file systems to better serve the needs of researchers managing data during the various stages of the research data lifecycle (data capture, analysis, archiving,, etc.).'
+
   utter_data_storage_options:
-  - text: User Home Directories, HPC Scratch, HPC Vast, HPC Research Project Space,
-      HPC Work, HPC Archive
-  
+    - text: User Home Directories, HPC Scratch, HPC Vast, HPC Research Project Space, HPC Work, HPC Archive
+
   utter_did_that_help:
-  - text: Did that help you?
-  
+    - text: Did that help you?
+
   utter_goodbye:
-  - text: Bye
-  
+    - text: Bye
+
   utter_greet:
-  - text: Hey! How are you?
-  
+    - text: Hey! How are you?
+
   utter_happy:
-  - text: Great, carry on!
-  
+    - text: Great, carry on!
+
+  # General HPC Storage
+  utter_storage_system:
+    - text: "The NYU HPC clusters are served by a General Parallel File System (GPFS) cluster."
+
+  utter_storage_capacity:
+    - text: "The NYU HPC system provides 9.5 petabytes of total GPFS storage."
+
+  utter_storage_read_speed:
+    - text: "The GPFS storage on the NYU HPC clusters offers read speeds of up to 78 GB per second."
+
+  utter_storage_iops:
+    - text: "The GPFS storage on the NYU HPC system can handle up to 650,000 input/output operations per second (IOPS)."
+
+  utter_rps:
+    - text: "The Research Project Space (RPS) provides volumes for sharing data and code among project or lab members."
+
+  utter_vast_storage:
+    - text: "The NYU HPC team is piloting an all-flash VAST storage solution for high-performance workloads."
+
+  # Help
+  utter_account_issues:
+    - text: "To apply or renew your HPC account, ensure you are connected to the VPN. More information is available on our website."
+
+  utter_login_issues:
+    - text: "Ensure you are using the VPN or HPC Gateway Server. Also, check if you have exceeded your quota in terms of storage or inodes."
+
+  utter_software_requests:
+    - text: "For Singularity environments, use ':rw' when installing packages and ':ro' when running containers. Don't forget to pass NVIDIA drivers using the --nv flag."
+
+  utter_data_management:
+    - text: "Visit the 'Best Practices for Storage' page for tips on managing data and quotas. General information is available on the 'Data Management on the NYU HPC Clusters' page."
+
+  utter_job_issues:
+    - text: "Avoid running jobs on the login node, submit them via Slurm. You can check the cluster status or review the efficiency of your jobs."
+
+  utter_other_questions:
+    - text: "If you don't see your question here, try searching the website for more information."
+
+  utter_mitm_warning:
+    - text: |
+        To avoid the man-in-the-middle warning when connecting to Greene HPC, you can modify your SSH configuration file.
+        Add the following lines to "~/.ssh/config" using your favorite text editor:
+
+        ```
+        Host greene.hpc.nyu.edu dtn.hpc.nyu.edu
+          StrictHostKeyChecking no
+          ServerAliveInterval 60
+          ForwardAgent yes
+          UserKnownHostsFile /dev/null
+          LogLevel ERROR
+        ```
+
+        This will also fix SSH timeout errors by extending the ServerAliveInterval argument.
+    
+  # Hardware Specs
+  utter_gpfs:
+    - text: "The NYU HPC clusters are served by a General Parallel File System (GPFS) storage cluster. GPFS provides concurrent high-speed file access to applications executing on multiple nodes of clusters."
+
+  utter_gpfs_configuration:
+    - text: |
+        The NYU HPC GPFS storage runs on Lenovo Distributed Storage Solution DSS-G hardware:
+        - 2x DSS-G 202 with 116 SSDs, providing 464TB raw storage.
+        - 2x DSS-G 240 with 668 HDDs, providing 9.1PB raw storage.
+
+  utter_performance:
+    - text: |
+        Performance specs for NYU HPC storage:
+        - Read Speed: 78 GB/s
+        - Write Speed: 42 GB/s
+        - IOPS: up to 650,000 operations per second
+
+  utter_vast:
+    - text: |
+        VAST flash storage is available on Greene for high I/O rate workloads. The NVMe-based system provides 778 TB of storage and is accessible via the `/vast` path for reading by all users and writing by approved users.
+
+  utter_gdtn:
+    - text: |
+        Data Transfer Nodes (gDTN) on Greene HPC are Lenovo SR630 systems with the following specs:
+        - CPU: 2x Intel Xeon Gold 6244 3.6GHz
+        - Memory: 192GB DDR4
+        - Storage: 1x 1.92TB SSD
+        - Infiniband and Ethernet connectivity for high-speed data transfer.
+
+  # Datasets
+  utter_datasets_general:
+    - text: "The HPC team makes available a number of public datasets for analysis jobs. They are available read-only under '/scratch/work/public/ml-datasets/' and '/vast/work/public/ml-datasets/'. We recommend using datasets under /vast for better read performance."
+
+  utter_coco_dataset:
+    - text: "The COCO (Common Objects in Context) dataset is available under '/scratch/work/public/ml-datasets/coco/' and '/vast/work/public/ml-datasets/coco/'."
+
+  utter_imagenet:
+    - text: "ImageNet is a large-scale image dataset organized according to WordNet hierarchy. It is available under '/scratch/work/public/ml-datasets/imagenet/' and '/vast/work/public/ml-datasets/imagenet/'."
+
+  utter_millions_songs:
+    - text: "The Millions Songs dataset is available under '/scratch/work/public/MillionSongDataset/' and '/vast/work/public/ml-datasets/millionsongdataset/'."
+
+  utter_twitter_decahose:
+    - text: "Twitter Decahose is a 10% random sample of Twitter's realtime Firehose. Data are stored in GCP cloud and on HPC clusters (Greene and Peel)."
+
+  utter_proquest_congressional:
+    - text: "The ProQuest Congressional Record dataset is available under '/scratch/work/public/proquest/'."
+
+  utter_c4:
+    - text: "The C4 dataset (Colossal, Cleaned Common Crawl) is available under '/scratch/work/public/ml-datasets/c4/' and '/vast/work/public/ml-datasets/c4/'."
+
+  utter_gqa:
+    - text: "The GQA (Visual Reasoning) dataset is available under '/scratch/work/public/ml-datasets/gqa/' and '/vast/work/public/ml-datasets/gqa/'."
+
+  utter_mjsynth:
+    - text: "The MJSynth dataset (synthetically generated for text recognition) is available under '/vast/work/public/ml-datasets/mjsynth/'."
+
+  utter_open_images:
+    - text: "The Open Images dataset is available under '/scratch/work/public/ml-datasets/open-images-dataset/' and '/vast/work/public/ml-datasets/open-images-dataset/'."
+
+  utter_pile:
+    - text: "The Pile dataset is available under '/scratch/work/public/ml-datasets/pile/' and '/vast/work/public/ml-datasets/pile/'."
+
+  utter_waymo:
+    - text: "The Waymo Open dataset is available under '/vast/work/public/ml-datasets/waymo_open_dataset_v_1_2_0_individual_files/'."
+
+  # Installing Python packages
+  utter_package_management:
+    - text: |
+        When creating Python or Conda environments in your home directory, it may consume all your inodes due to the limited number of inodes available. Please review the best practices for managing packages under the Package Management section of the Greene Software Page.
+
   utter_high_risk_data:
-  - text: High-risk data should be stored in Secure Research Data Environments (SRDE),
-      not on the HPC.
-  
+    - text: High-risk data should be stored in Secure Research Data Environments (SRDE), not on the HPC.
+
   utter_high_risk_data_warning:
-  - text: Because the HPC system is not approved for High Risk data, we recommend
-      using an approved system like the  Secure Research Data Environments (SRDE).
-  
+    - text: Because the HPC system is not approved for High Risk data, we recommend using an approved system like the Secure Research Data Environments (SRDE).
+
   utter_hpc_data_management:
-  - text: HPC data management involves various file systems to handle data during
-      the research lifecycle, including storage, analysis, and archiving.
-  
+    - text: HPC data management involves various file systems to handle data during the research lifecycle, including storage, analysis, and archiving.
+
   utter_hpc_data_transfers:
-  - text: Data transfer in HPC can be done using SCP or the Data Transfer Node, depending
-      on file size and location.
-  
+    - text: Data transfer in HPC can be done using SCP or the Data Transfer Node, depending on file size and location.
+
   utter_hpc_definition:
-  - text: High Performance Computing (HPC) refers to the practice of aggregating computing
-      power in a way that delivers much higher performance than one could get out
-      of a typical desktop computer or workstation, enabling the solution of complex
-      data processing challenges, scientific problems, and simulations.
+    - text: High Performance Computing (HPC) refers to the practice of aggregating computing power in a way that delivers much higher performance than one could get out of a typical desktop computer or workstation, enabling the solution of complex data processing challenges, scientific problems, and simulations.
 
   utter_ask_high_risk_data:
-  - text: HPC is not approved for storing or analyzing High Risk data such as Personally 
-      Identifiable Information (PII) or electronic Protected Health Information (ePHI). 
-      For high-risk data, you should use the Secure Research Data Environment (SRDE), 
-      which is specifically approved for handling such sensitive data.
+    - text: HPC is not approved for storing or analyzing High Risk data such as Personally Identifiable Information (PII) or electronic Protected Health Information (ePHI). For high-risk data, you should use the Secure Research Data Environment (SRDE), which is specifically approved for handling such sensitive data.
 
   utter_hpc_scratch_purging:
-  - text: HPC scratch storage has a purging policy where files are deleted after 60
-      days of inactivity.
-  
+    - text: HPC scratch storage has a purging policy where files are deleted after 60 days of inactivity.
+
   utter_hpc_sharing_data:
-  - text: For sharing data in HPC, using Research Project Space or shared scratch
-      directories is recommended.
-  
+    - text: For sharing data in HPC, using Research Project Space or shared scratch directories is recommended.
+
   utter_hpc_storage_comparison:
-  - text: Each storage system in HPC serves different purposes, with home directories
-      for code, scratch for temporary data, and project space for shared research
-      files.
-  
+    - text: Each storage system in HPC serves different purposes, with home directories for code, scratch for temporary data, and project space for shared research files.
+
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
-  
+    - text: I am a bot, powered by Rasa.
+
   utter_moderate_risk_data:
-  - text: HPC allows storage of moderate-risk data, but not high-risk data such as
-      PII or ePHI.
-  
+    - text: HPC allows storage of moderate-risk data, but not high-risk data such as PII or ePHI.
+
   utter_moderate_risk_data_warning:
-  - text: The HPC Environment has been approved for storing and analyzing Moderate
-      Risk research data, as defined in the NYU Electronic Data and System Risk Classification
-      Policy. High Risk research data, such as those that include Personal Identifiable
-      Information (PII) or electronic Protected Health Information (ePHI) or Controlled
-      Unclassified Information (CUI) should NOT be stored in the HPC Environment.
-      Please note that only the Office of Sponsored Projects (OSP) and Global Office
-      of Information Security (GOIS) are empowered to classify the risk categories
-      of data.
-  
+    - text: The HPC Environment has been approved for storing and analyzing Moderate Risk research data, as defined in the NYU Electronic Data and System Risk Classification Policy. High Risk research data, such as those that include Personal Identifiable Information (PII) or electronic Protected Health Information (ePHI) or Controlled Unclassified Information (CUI) should NOT be stored in the HPC Environment. Please note that only the Office of Sponsored Projects (OSP) and Global Office of Information Security (GOIS) are empowered to classify the risk categories of data.
+
   utter_user_home_dir:
-  - text: Every individual user has a home directory (under `/home/$USER`, environment
-      variable `$HOME`) for permanently storing code and important configuration files.
-      Home Directories provide limited storage space (50 GB) and inodes (files) 30,000
-      per user. Users can check their quota utilization using the `myquota` command.
+    - text: Every individual user has a home directory (under `/home/$USER`, environment variable `$HOME`) for permanently storing code and important configuration files. Home Directories provide limited storage space (50 GB) and inodes (files) 30,000 per user. Users can check their quota utilization using the `myquota` command.
 
   utter_ask_hpc_scratch_purging:
-  - text: HPC scratch storage has a purging policy where files are deleted after 60
-      days of inactivity. Be sure to archive important data or move it to a backed-up
-      location like Research Project Space or your home directory.
+    - text: HPC scratch storage has a purging policy where files are deleted after 60 days of inactivity. Be sure to archive important data or move it to a backed-up location like Research Project Space or your home directory.
 
   utter_ask_hpc_storage_comparison:
-  - text: HPC offers several storage options including user home directories, scratch
-      space, vast, and research project space. Home directories are limited and backed
-      up daily, while scratch and vast provide high-performance, temporary storage
-      for active projects, subject to purging policies.
+    - text: HPC offers several storage options including user home directories, scratch space, vast, and research project space. Home directories are limited and backed up daily, while scratch and vast provide high-performance, temporary storage for active projects, subject to purging policies.
 
   utter_ask_hpc_data_transfers:
-  - text: Data transfers within the HPC can be done via SCP or the Data Transfer Node
-      (gDTN). Use these methods to move data between systems or bring data into HPC
-      for processing.
+    - text: Data transfers within the HPC can be done via SCP or the Data Transfer Node (gDTN). Use these methods to move data between systems or bring data into HPC for processing.
 
   utter_ask_hpc_sharing_data:
-  - text: For sharing data on HPC, use the Research Project Space or shared scratch
-      directories. Research Project Space is ideal for long-term collaborations, while
-      scratch is better for temporary data sharing during active projects.
+    - text: For sharing data on HPC, use the Research Project Space or shared scratch directories. Research Project Space is ideal for long-term collaborations, while scratch is better for temporary data sharing during active projects.
+
+  utter_quota_limits:
+    - text: |
+        Users have quota limits on HPC file systems, including limits on disk space and the number of files (inodes). You can check your current utilization of quota using the `myquota` command, which provides a report of your usage and quota limits.
+
+  utter_large_number_of_files:
+    - text: |
+        Handling a large number of small files can create bottlenecks due to read/write rates. Please refer to our page on working with a large number of files to learn about recommended options to avoid performance issues.
 
 session_config:
   carry_over_slots_to_new_session: true

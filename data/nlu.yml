@@ -21,14 +21,13 @@ nlu:
   examples: |
     - cu
     - good by
-    - cee you later
+    - see you later
     - good night
     - bye
     - goodbye
     - have a nice day
     - see you around
     - bye bye
-    - see you later
 
 - intent: affirm
   examples: |
@@ -62,9 +61,6 @@ nlu:
     - I am going to save the world
     - super stoked
     - extremely good
-    - so so perfect
-    - so good
-    - so perfect
 
 - intent: mood_unhappy
   examples: |
@@ -78,17 +74,12 @@ nlu:
     - very sad
     - unhappy
     - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
 
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
-    - am I talking to a human?
 
 - intent: hpc_definition
   examples: |
@@ -96,28 +87,129 @@ nlu:
     - What is high performance computing used for?
     - Examples of high performance computing applications?
 
+# General HPC Storage
+- intent: ask_storage_system
+  examples: |
+    - What storage system does NYU HPC use?
+    - Tell me about the storage on NYU's HPC clusters.
+
+- intent: ask_storage_capacity
+  examples: |
+    - How much storage is available on NYU HPC?
+    - What is the total storage capacity of the NYU HPC system?
+
+- intent: ask_storage_read_speed
+  examples: |
+    - What are the read speeds of the NYU HPC storage?
+    - How fast can the NYU HPC storage read data?
+
+- intent: ask_storage_iops
+  examples: |
+    - How many input/output operations per second does NYU HPC storage handle?
+    - What is the IOPS of the NYU HPC storage?
+
+- intent: ask_rps
+  examples: |
+    - What is the Research Project Space on NYU HPC?
+    - Can you explain RPS in NYU HPC?
+
+- intent: ask_vast_storage
+  examples: |
+    - What new storage solution is NYU HPC piloting?
+    - Tell me about the VAST storage pilot in NYU HPC.
+
+# Help
+- intent: ask_account_issues
+  examples: |
+    - How do I apply for an HPC account?
+    - How do I renew my HPC account?
+
+- intent: ask_login_issues
+  examples: |
+    - I can't log in to the HPC system
+    - Why can't I log in?
+
+- intent: ask_software_requests
+  examples: |
+    - How can I request software on HPC?
+    - How do I install packages on Singularity?
+
+- intent: ask_data_management
+  examples: |
+    - How do I manage my data on HPC?
+    - What are the best practices for managing files on the HPC cluster?
+
+- intent: ask_job_issues
+  examples: |
+    - Why was my job killed on the HPC cluster?
+    - What do I do if my job is in a long queue?
+
+- intent: ask_other_questions
+  examples: |
+    - I don't see my issue listed, what should I do?
+    - Where can I find more information?
+
+- intent: ask_mitm_warning
+  examples: |
+    - How do I fix the man-in-the-middle warning?
+
+# Hardware Specs
+- intent: ask_gpfs
+  examples: |
+    - What is GPFS used in NYU HPC?
+    - Can you explain GPFS on the NYU HPC clusters?
+
+- intent: ask_gpfs_configuration
+  examples: |
+    - What is the configuration of the NYU HPC GPFS storage?
+    - Can you describe the storage configuration for GPFS on NYU HPC?
+
+- intent: ask_performance
+  examples: |
+    - What are the read and write speeds of NYU HPC storage?
+
+- intent: ask_vast
+  examples: |
+    - What is VAST flash storage on Greene?
+    - How does the VAST storage system work?
+
+- intent: ask_rps
+  examples: |
+    - What is Research Project Space on NYU HPC?
+    - Can you explain the RPS volumes on Greene?
+
+- intent: ask_gdtn
+  examples: |
+    - What are the specs for the data transfer nodes on NYU HPC?
+    - Tell me about the hardware of gDTN on NYU HPC.
+
+# Best Practices
+- intent: ask_package_management
+  examples: |
+    - How do I install Python packages on Greene HPC?
+    - How do I avoid inode issues when creating Python environments?
+
+- intent: ask_quota_limits
+  examples: |
+    - What are the quota limits on HPC?
+    - How can I check my quota usage?
+
+- intent: ask_large_number_of_files
+  examples: |
+    - How do I handle a large number of small files on HPC?
+
+# Data Management
 - intent: data_management_intro
   examples: |
     - What is HPC data management?
-    - How does HPC handle data storage?
-    - Can you explain data storage options in the HPC environment?
-    - What are the file systems available in HPC?
-    - Tell me about scratch file system in HPC
-    - What is user home directory in HPC?
 
 - intent: moderate_risk_data_warning
   examples: |
     - What is moderate risk data in HPC?
-    - Can I store moderate risk data on the HPC?
-    - What kind of data can be stored in HPC?
-    - Is PII allowed in HPC storage?
 
 - intent: high_risk_data_warning
   examples: |
     - What is high risk data in HPC?
-    - Can HPC handle high risk data?
-    - What data should I store in SRDE?
-    - What is SRDE approved data?
 
 - intent: data_storage_options
   examples: |
@@ -125,30 +217,86 @@ nlu:
 
 - intent: user_home_dir
   examples: |
-    - How many storage space I can use for home directory? 
+    - How much storage space can I use for the home directory?
 
 - intent: ask_hpc_scratch_purging
   examples: |
     - How does the HPC scratch file purging work?
-    - What is the purging policy in HPC scratch?
-    - How long does data stay in scratch storage?
-    - Can I avoid data deletion in scratch?
 
 - intent: ask_hpc_storage_comparison
   examples: |
     - Can you compare the different storage options in HPC?
-    - What is the difference between scratch and vast storage?
-    - How does research project space differ from user home directory?
-    - Which storage option is best for my project in HPC?
 
 - intent: ask_hpc_data_transfers
   examples: |
     - How do I transfer data in the HPC environment?
-    - What are the data transfer options in HPC?
-    - Can I move files between storage systems in HPC?
 
 - intent: ask_hpc_sharing_data
   examples: |
     - How do I share data with collaborators on HPC?
-    - Can I share files in the scratch space?
-    - What is the best way to share files with my team in HPC?
+
+# Datasets
+- intent: ask_datasets_general
+  examples: |
+    - What datasets are available on HPC?
+    - Tell me about the datasets on NYU HPC.
+    - Can I get a list of public datasets on HPC?
+    - Where are the datasets located on HPC?
+
+- intent: ask_coco_dataset
+  examples: |
+    - What is the COCO dataset?
+    - Tell me about the COCO dataset available on HPC.
+    - Where can I access the COCO dataset on HPC?
+
+- intent: ask_imagenet
+  examples: |
+    - What is the ImageNet dataset?
+    - Tell me about ImageNet on NYU HPC.
+    - How do I access ImageNet on HPC?
+
+- intent: ask_millions_songs
+  examples: |
+    - What is the Millions Songs dataset?
+    - Tell me about the Millions Songs dataset on NYU HPC.
+    - Where can I access the Millions Songs dataset?
+
+- intent: ask_twitter_decahose
+  examples: |
+    - What is the Twitter Decahose dataset?
+    - Can you tell me about the Twitter Decahose on HPC?
+
+- intent: ask_proquest_congressional
+  examples: |
+    - What is the ProQuest Congressional Record dataset?
+    - Where can I find the ProQuest Congressional Record on HPC?
+
+- intent: ask_c4
+  examples: |
+    - What is the C4 dataset?
+    - Tell me about the C4 dataset on HPC.
+
+- intent: ask_gqa
+  examples: |
+    - What is the GQA dataset?
+    - Tell me about the GQA dataset on NYU HPC.
+
+- intent: ask_mjsynth
+  examples: |
+    - What is the MJSynth dataset?
+    - Tell me about MJSynth on HPC.
+
+- intent: ask_open_images
+  examples: |
+    - What is the Open Images dataset?
+    - Tell me about Open Images dataset on NYU HPC.
+
+- intent: ask_pile
+  examples: |
+    - What is The Pile dataset?
+    - Tell me about The Pile dataset on NYU HPC.
+
+- intent: ask_waymo
+  examples: |
+    - What is the Waymo Open dataset?
+    - Tell me about Waymo Open dataset on HPC.

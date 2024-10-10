@@ -34,8 +34,143 @@ stories:
   - intent: hpc_definition
   - action: utter_hpc_definition
 
+# General HPC Storage
+- story: respond_to_storage_system
+  steps:
+  - intent: ask_storage_system
+  - action: utter_storage_system
+
+- story: respond_to_storage_capacity
+  steps:
+  - intent: ask_storage_capacity
+  - action: utter_storage_capacity
+
+- story: respond_to_storage_read_speed
+  steps:
+  - intent: ask_storage_read_speed
+  - action: utter_storage_read_speed
+
+- story: respond_to_storage_iops
+  steps:
+  - intent: ask_storage_iops
+  - action: utter_storage_iops
+
+- story: respond_to_rps
+  steps:
+  - intent: ask_rps
+  - action: utter_rps
+
+- story: respond_to_vast_storage
+  steps:
+  - intent: ask_vast_storage
+  - action: utter_vast_storage
+
+# Help
+- story: respond_to_account_issues
+  steps:
+  - intent: ask_account_issues
+  - action: utter_account_issues
+
+- story: respond_to_login_issues
+  steps:
+  - intent: ask_login_issues
+  - action: utter_login_issues
+
+- story: respond_to_software_requests
+  steps:
+  - intent: ask_software_requests
+  - action: utter_software_requests
+
+- story: respond_to_data_management
+  steps:
+  - intent: ask_data_management
+  - action: utter_data_management
+
+- story: respond_to_job_issues
+  steps:
+  - intent: ask_job_issues
+  - action: utter_job_issues
+
+- story: respond_to_other_questions
+  steps:
+  - intent: ask_other_questions
+  - action: utter_other_questions
+
+- story: respond_to_mitm_warning
+  steps:
+  - intent: ask_mitm_warning
+  - action: utter_mitm_warning
+
+# General HPC Storage
+- story: respond_to_storage_system
+  steps:
+  - intent: ask_storage_system
+  - action: utter_storage_system
+
+- story: respond_to_storage_capacity
+  steps:
+  - intent: ask_storage_capacity
+  - action: utter_storage_capacity
+
+- story: respond_to_storage_read_speed
+  steps:
+  - intent: ask_storage_read_speed
+  - action: utter_storage_read_speed
+
+- story: respond_to_storage_iops
+  steps:
+  - intent: ask_storage_iops
+  - action: utter_storage_iops
+
+# GPFS Storage
+- story: respond_to_gpfs
+  steps:
+  - intent: ask_gpfs
+  - action: utter_gpfs
+
+- story: respond_to_gpfs_configuration
+  steps:
+  - intent: ask_gpfs_configuration
+  - action: utter_gpfs_configuration
+
+# Performance
+- story: respond_to_performance
+  steps:
+  - intent: ask_performance
+  - action: utter_performance
+
+# VAST Flash Tier Storage
+- story: respond_to_vast
+  steps:
+  - intent: ask_vast
+  - action: utter_vast
+
+# Data Transfer Nodes (gDTN)
+- story: respond_to_gdtn
+  steps:
+  - intent: ask_gdtn
+  - action: utter_gdtn
+
+# Installing Python packages
+- story: respond_to_package_management
+  steps:
+  - intent: ask_package_management
+  - action: utter_package_management
+
+# Help - Quota Limits
+- story: respond_to_quota_limits
+  steps:
+  - intent: ask_quota_limits
+  - action: utter_quota_limits
+
+# Help - Large Number of Files
+- story: respond_to_large_number_of_files
+  steps:
+  - intent: ask_large_number_of_files
+  - action: utter_large_number_of_files
+
 - story: hpc data management intro
-  steps: 
+  steps:
   - intent: data_management_intro
   - action: utter_data_management_intro
 
@@ -56,35 +191,96 @@ stories:
 
 - story: Handle HPC data management queries
   steps:
-    - intent: ask_hpc_data_management
-    - action: utter_hpc_data_management
+  - intent: ask_hpc_data_management
+  - action: utter_hpc_data_management
 
 - story: Explain moderate risk data
   steps:
-    - intent: ask_moderate_risk_data
-    - action: utter_moderate_risk_data
+  - intent: ask_moderate_risk_data
+  - action: utter_moderate_risk_data
 
 - story: Explain high risk data
   steps:
-    - intent: ask_high_risk_data
-    - action: utter_high_risk_data
+  - intent: ask_high_risk_data
+  - action: utter_high_risk_data
 
 - story: Explain HPC scratch file purging
   steps:
-    - intent: ask_hpc_scratch_purging
-    - action: utter_hpc_scratch_purging
+  - intent: ask_hpc_scratch_purging
+  - action: utter_hpc_scratch_purging
 
 - story: Compare HPC storage options
   steps:
-    - intent: ask_hpc_storage_comparison
-    - action: utter_hpc_storage_comparison
+  - intent: ask_hpc_storage_comparison
+  - action: utter_hpc_storage_comparison
 
 - story: Explain HPC data transfers
   steps:
-    - intent: ask_hpc_data_transfers
-    - action: utter_hpc_data_transfers
+  - intent: ask_hpc_data_transfers
+  - action: utter_hpc_data_transfers
 
 - story: Explain sharing data in HPC
   steps:
-    - intent: ask_hpc_sharing_data
-    - action: utter_hpc_sharing_data
+  - intent: ask_hpc_sharing_data
+  - action: utter_hpc_sharing_data
+
+# Datasets
+- story: respond_to_datasets_general
+  steps:
+  - intent: ask_datasets_general
+  - action: utter_datasets_general
+
+- story: respond_to_coco_dataset
+  steps:
+  - intent: ask_coco_dataset
+  - action: utter_coco_dataset
+
+- story: respond_to_imagenet
+  steps:
+  - intent: ask_imagenet
+  - action: utter_imagenet
+
+- story: respond_to_millions_songs
+  steps:
+  - intent: ask_millions_songs
+  - action: utter_millions_songs
+
+- story: respond_to_twitter_decahose
+  steps:
+  - intent: ask_twitter_decahose
+  - action: utter_twitter_decahose
+
+- story: respond_to_proquest_congressional
+  steps:
+  - intent: ask_proquest_congressional
+  - action: utter_proquest_congressional
+
+- story: respond_to_c4
+  steps:
+  - intent: ask_c4
+  - action: utter_c4
+
+- story: respond_to_gqa
+  steps:
+  - intent: ask_gqa
+  - action: utter_gqa
+
+- story: respond_to_mjsynth
+  steps:
+  - intent: ask_mjsynth
+  - action: utter_mjsynth
+
+- story: respond_to_open_images
+  steps:
+  - intent: ask_open_images
+  - action: utter_open_images
+
+- story: respond_to_pile
+  steps:
+  - intent: ask_pile
+  - action: utter_pile
+
+- story: respond_to_waymo
+  steps:
+  - intent: ask_waymo
+  - action: utter_waymo
